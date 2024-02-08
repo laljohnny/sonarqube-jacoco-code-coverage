@@ -4,10 +4,12 @@ plugins {
     id 'org.sonarqube' version '4.0.0.2929'
     id 'com.avast.gradle.docker-compose' version '0.14.3'
 }
+
 java {
-  sourceCompatibility = 1.8
-  targetCompatibility = 1.8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
+
 group 'com.tom'
 version '1.0-SNAPSHOT'
 
@@ -17,6 +19,7 @@ repositories {
 
 dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    // Your other dependencies here
 }
 
 sonarqube {
@@ -32,7 +35,9 @@ jacocoTestReport {
         xml.required = true
     }
 }
+
 test.finalizedBy jacocoTestReport
+
 tasks.named('sonarqube').configure {
     dependsOn test
 }
